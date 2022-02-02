@@ -4,11 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "set NODE_ENV=development && nodemon index.js"
+    "dev": "NODE_ENV=development  nodemon src/index.js",
+    "prod": "NODE_ENV=production  nodemon src/index.js"
   },
   "dependencies": {
     "dotenv": "^14.3.2",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.15.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
