@@ -1,10 +1,20 @@
 const config = require("./utils/config");
 const express = require("express");
 const db = require("./models/index");
+const routes = require("./routes/routes");
+const secureRoutes = require("./routes/secure_route");
+const passport = require("passport");
+require("./controllers/auth");
 require("dotenv").config();
 const app = express();
 app.use(express.json());
-console.log(process.env.NODE_ENV);
+app.use(express.urlencoded({ extended: true }));
+app.use("/", routes);
+app.use(
+  "/user",
+  passport.authenticate("jwt", { session: false }),
+  secureRoutes
+);
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
 });
